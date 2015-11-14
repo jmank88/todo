@@ -1,0 +1,6 @@
+[submodule "vendor/github.com/lib/pq"]
+	path = vendor/github.com/lib/pq
+	url = http://github.com/lib/pq
+[submodule "vendor/github.com/rs/xid"]
+	path = vendor/github.com/rs/xid
+	url = http://github.com/rs/xid

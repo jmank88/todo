@@ -1,0 +1,12 @@
+postgres:
+  image: postgres
+  ports:
+    - "5432:5432"
+
+todo:
+  build: .
+  links:
+    - postgres
+  ports:
+    - "8080:8080"
+  command: ./todo -host=postgres://postgres:postgres@postgres:5432?sslmode=disable
