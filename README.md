@@ -15,25 +15,25 @@ The todo server exposes json services for getting, putting, and deleting tasks.
 
 ### Get All
 ```
-GET *<host>/*
+GET <host>/
 ```
 Gets all tasks. Returns a json list of task objects.
 
 ### Get
 ```
-GET *<host>/<id>*
+GET <host>/<id>
 ```
 Gets a single task with the given id. Returns a json task object.
 
 ### Put
 ```
-PUT *<host>/*
+PUT <host>/
 ```
 Puts a task. Accepts a json task object. Returns the either the provided task id, or a uid if none was provided.
 
 ### Delete
 ```
-DELETE *<host>/<id>*
+DELETE <host>/<id>
 ```
 Deletes the task with the given id.
 
