@@ -86,9 +86,9 @@ Gets a single task by id. Prints the go task struct.
 
 ### PUT
 ```
-./cli -X PUT <<< '<json task object>'
+./cli -X PUT -id <id> -title <title> -description <description>
 ```
-Puts a task. Accepts a json task object via stdin. Prints the task id.
+Puts a task. Accepts optional id, title, and description flags. Prints the task id.
 
 ### DEL
 ```
@@ -116,17 +116,17 @@ Here is an example session using the cli:
 ```
 docker-compose up -d
 
-./cli -X PUT <<< '{"id":"1", "title":"Shopping List", "description": "milk, eggs, bread"}'
+./cli -X PUT -id 1 -title "Shopping List" -description "milk, eggs, bread"
 > put task "1"
 
 ./cli -X GET -id 1
-> &{1 Shopping List milk, eggs, bread}
+> &task.Task{ID:"1", Title:"Shopping List", Description:"milk, eggs, bread"}
 
-./cli -X PUT <<< '{"title":"Call Mom", "description": "Call mom @5:00pm"}'
+./cli -X PUT -title "Call Mom" -description "Call mom @5:00pm"
 > put task "VkeEoUn1XQAB1bov"
 
 ./cli -X GET
-> [{1 Shopping List milk, eggs, bread} {VkeEoUn1XQAB1bov Call Mom Call mom @5:00pm}]
+> []task.Task{task.Task{ID:"1", Title:"Shopping List", Description:"milk, eggs, bread"}, task.Task{ID:"VkgI6xJGrAABnEXc", Title:"Call Mom", Description:"Call mom @5:00pm"}}
 
 ./cli -X DEL -id 1
 > deleted task "1"

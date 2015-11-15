@@ -1,10 +1,8 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
 	"log"
-	"os"
 	"strings"
 
 	"github.com/jmank88/todo/client"
@@ -14,7 +12,9 @@ import (
 var (
 	host   = flag.String("host", "http://localhost:8080", "http task host to connect to")
 	method = flag.String("X", "", "method to execute. required. must be one of 'GET', 'PUT', or 'DEL'")
-	id     = flag.String("id", "", "task id. required for delete, optional for get")
+	id     = flag.String("id", "", "task id. required for delete, optional for get and put")
+	title = flag.String("title", "", "task title. only used for put")
+	description = flag.String("description", "", "task description. only used for put")
 )
 
 func main() {
@@ -33,7 +33,7 @@ func main() {
 			if err != nil {
 				log.Fatalf("failed to get all tasks: %s", err)
 			}
-			log.Println(tasks)
+			log.Printf("%#v\n", tasks)
 		} else {
 			task, err := taskClient.Get(*id)
 			if err != nil {
@@ -42,7 +42,7 @@ func main() {
 			if task == nil {
 				log.Fatalf("no task found for id %q", *id)
 			}
-			log.Println(task)
+			log.Printf("%#v\n", task)
 		}
 	case "DEL":
 		if *id == "" {
@@ -53,11 +53,11 @@ func main() {
 		}
 		log.Printf("deleted task %q\n", *id)
 	case "PUT":
-		var task task.Task
-		if err := json.NewDecoder(os.Stdin).Decode(&task); err != nil {
-			log.Fatalf("failed to deserialize json task: %s", err)
-		}
-		id, err := taskClient.Put(task)
+		id, err := taskClient.Put(task.Task{
+			ID: *id,
+			Title: *title,
+			Description: *description,
+		})
 		if err != nil {
 			log.Fatalf("failed to put task: %s", err)
 		}
