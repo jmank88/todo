@@ -1,12 +1,12 @@
 package server
 
 import (
-	"net/http/httptest"
-	"testing"
-	"net/http"
 	"bytes"
 	"encoding/json"
 	"io/ioutil"
+	"net/http"
+	"net/http/httptest"
+	"testing"
 
 	"github.com/jmank88/todo/task"
 )

@@ -22,5 +22,5 @@ func main() {
 		log.Fatal("failed to create datastore: ", err)
 	}
 
-	log.Fatal(http.ListenAndServe(":" + *port, server.NewServer(taskInterface)))
+	log.Fatal(http.ListenAndServe(":"+*port, server.NewServer(taskInterface)))
 }
