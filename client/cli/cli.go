@@ -10,10 +10,10 @@ import (
 )
 
 var (
-	host   = flag.String("host", "http://localhost:8080", "http task host to connect to")
-	method = flag.String("X", "", "method to execute. required. must be one of 'GET', 'PUT', or 'DEL'")
-	id     = flag.String("id", "", "task id. required for delete, optional for get and put")
-	title = flag.String("title", "", "task title. only used for put")
+	host        = flag.String("host", "http://localhost:8080", "http task host to connect to")
+	method      = flag.String("X", "", "method to execute. required. must be one of 'GET', 'PUT', or 'DEL'")
+	id          = flag.String("id", "", "task id. required for delete, optional for get and put")
+	title       = flag.String("title", "", "task title. only used for put")
 	description = flag.String("description", "", "task description. only used for put")
 )
 
@@ -54,8 +54,8 @@ func main() {
 		log.Printf("deleted task %q\n", *id)
 	case "PUT":
 		id, err := taskClient.Put(task.Task{
-			ID: *id,
-			Title: *title,
+			ID:          *id,
+			Title:       *title,
 			Description: *description,
 		})
 		if err != nil {
