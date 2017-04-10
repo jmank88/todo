@@ -1,4 +1,4 @@
-# Todo
+# Todo [![Go Report Card](https://goreportcard.com/badge/github.com/jmank88/todo)](https://goreportcard.com/report/github.com/jmank88/todo)
 A simple golang todo list server.
 
 The *todo* binary runs a todo list server backed by postgres, exposing a json http api. The *cli* binary provides a
